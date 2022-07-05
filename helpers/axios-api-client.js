@@ -13,11 +13,11 @@ export async function addBook(name, author, price) {
   const { data } = await axiosClient.post(`books`, { name, author, price });
   return data;
 }
-export async function updateBook(name, author, price) {
-  const { data } = await axiosClient.put(`books`, { name, author, price });
+export async function updateBook(id, name, author, price) {
+  const { data } = await axiosClient.put(`books/${id}`, { name, author, price });
   return data;
 }
 export async function deleteBook(id, name, author, price) {
-  const { data } = await axiosClient.delete(`books`, { id, name, author, price });
+  const { data } = await axiosClient.delete(`books/${id}`, { id, name, author, price });
   return data;
 }
