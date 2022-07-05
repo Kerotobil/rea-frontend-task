@@ -17,6 +17,20 @@ $xxl: 1536px;
   flex-direction: row;
 }
 
+.product-image {
+  height: 400px;
+  width: 100%;
+  position: relative;
+}
+
+.product-card-text-line {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
 .card-product {
   width: 280px;
   cursor: pointer;
