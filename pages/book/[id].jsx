@@ -2,7 +2,8 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { UpdateModal } from '../../components/book/updateModal';
-import { getBook } from '../../helpers/axios-api-client';
+import { Navigation } from '../../components/navbar';
+import { deleteBook, getBook } from '../../helpers/axios-api-client';
 
 export default function Product() {
   const router = useRouter();
@@ -11,10 +12,9 @@ export default function Product() {
   const [buttonDisabled, setButtonDisabled] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
 
-  /* const addFavoriteList = (id) => {
-    deleteBook(id);
-    router.reload();
-  }; */
+  const deleteProduct = async (id) => {
+    await deleteBook(id).then(() => router.push('/'));
+  };
 
   useEffect(() => {
     const fetcData = async () => {
@@ -28,6 +28,8 @@ export default function Product() {
   }, [router]);
   return (
     <div>
+      <Navigation />
+
       {product && (
         <div className="container">
           <div className="row justify-center">
@@ -39,12 +41,12 @@ export default function Product() {
             <div className="col-md w-100">
               <div className="card w-100 border-0" style={{ width: '18rem', height: '100%' }}>
                 <div className="card-body">
-                  <h5 className="card-title">{product.name}</h5>
+                  <h5 className="card-title">{`${product.name}`}</h5>
                   <p className={`card-text ${moreText ? null : 'product-card-text-line'} `}>{product.author}</p>
                   <div className="d-flex justify-content-around">
                     <button
                       onClick={() => {
-                        addFavoriteList(product.id);
+                        deleteProduct(product.id);
                       }}
                       disabled={buttonDisabled}
                       className={`btn bg-primary text-white border-0 px-4 ${buttonDisabled ? 'disabled' : null}`}
