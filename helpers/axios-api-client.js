@@ -17,7 +17,7 @@ export async function updateBook(id, name, author, price) {
   const { data } = await axiosClient.put(`books/${id}`, { name, author, price });
   return data;
 }
-export async function deleteBook(id, name, author, price) {
-  const { data } = await axiosClient.delete(`books/${id}`, { id, name, author, price });
+export async function deleteBook(id) {
+  const { data } = await axiosClient.delete(`books/${id}`);
   return data;
 }
