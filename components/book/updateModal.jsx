@@ -2,7 +2,7 @@ import { Formik } from 'formik';
 import { Form, Button, Modal } from 'react-bootstrap';
 import { updateBook } from '../../helpers/axios-api-client';
 export const UpdateModal = (props) => {
-  const handleUpdateProduct = async (name, price, author) => {
+  const handleUpdateProduct = async ({ name, price, author }) => {
     await updateBook(props.id, name, author, price);
   };
 
@@ -20,7 +20,7 @@ export const UpdateModal = (props) => {
                 author: '',
                 price: '',
               }}
-              onSubmit={(values) => handleUpdateProduct({ values })}
+              onSubmit={(values) => handleUpdateProduct(values)}
             >
               {({ handleSubmit, handleChange, values, touched, errors }) => (
                 <Form noValidate onSubmit={handleSubmit}>
